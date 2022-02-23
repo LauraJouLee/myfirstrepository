@@ -10,26 +10,163 @@
 
     <script type="text/javascript">
       var yourVlSpec = {
-        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-        description: 'A simple bar chart with embedded data.',
-        data: {
-          values: [
-            {a: 'A', b: 28},
-            {a: 'B', b: 55},
-            {a: 'C', b: 43},
-            {a: 'D', b: 91},
-            {a: 'E', b: 81},
-            {a: 'F', b: 53},
-            {a: 'G', b: 19},
-            {a: 'H', b: 87},
-            {a: 'I', b: 52}
-          ]
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "concat": {
+      "spacing": 0
+    }
+  },
+  "data": {
+    "name": "characters",
+    "values": [
+      {
+        "name": "Esther",
+        "class": "rogue",
+        "agility": 10,
+        "intelligence": 15,
+        "charisma": 8,
+        "constitution": 15,
+        "wisdom": 14,
+        "strength": 14,
+        "maxhp": 40,
+        "hp": 35
+      },
+      {
+        "name": "Matt",
+        "class": "fighter",
+        "agility": 10,
+        "intelligence": 12,
+        "charisma": 12,
+        "constitution": 8,
+        "wisdom": 11,
+        "strength": 15,
+        "maxhp": 20,
+        "hp": 19
+      },
+      {
+        "name": "Draco Malfoy",
+        "class": "Wizard",
+        "agility": 15,
+        "intelligence": 15,
+        "charisma": 13,
+        "constitution": 2,
+        "wisdom": 15,
+        "strength": 14,
+        "maxhp": 60,
+        "hp": 60
+      },
+      {
+        "name": "Atulya",
+        "class": "wizard",
+        "agility": 8,
+        "intelligence": 15,
+        "charisma": 11,
+        "constitution": 8,
+        "wisdom": 12,
+        "strength": 10,
+        "maxhp": 40,
+        "hp": 39
+      },
+      {
+        "name": "Geralt of Rivia",
+        "class": "witcher",
+        "agility": 14,
+        "intelligence": 6,
+        "charisma": 8,
+        "constitution": 11,
+        "wisdom": 10,
+        "strength": 8,
+        "maxhp": 36,
+        "hp": 34
+      },
+      {
+        "name": "Ria",
+        "class": "Wizard",
+        "agility": 12,
+        "intelligence": 16,
+        "charisma": 9,
+        "constitution": 13,
+        "wisdom": 9,
+        "strength": 13,
+        "maxhp": 50,
+        "hp": 45
+      },
+      {
+        "name": "Wraith",
+        "class": "Apex legend",
+        "agility": 20,
+        "intelligence": 8,
+        "charisma": 10,
+        "constitution": 10,
+        "wisdom": 10,
+        "strength": 2,
+        "maxhp": 60,
+        "hp": 59
+      },
+      {
+        "name": "Nico",
+        "class": "wizard",
+        "agility": 9,
+        "intelligence": 12,
+        "charisma": 11,
+        "constitution": 9,
+        "wisdom": 9,
+        "strength": 9,
+        "maxhp": 30,
+        "hp": 30
+      }
+    ]
+  },
+  "transform": [
+    {
+      "fold": [
+        "strength",
+        "agility",
+        "intelligence",
+        "charisma",
+        "constitution",
+        "wisdom"
+      ]
+    }
+  ],
+  "hconcat": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "x": {"field": "key", "type": "nominal"},
+        "y": {"field": "name", "type": "nominal"},
+        "color": {"field": "value", "type": "quantitative"}
+      }
+    },
+    {
+      "layer": [
+        {
+          "mark": {"type": "rect", "stroke": "black"},
+          "encoding": {
+            "y": {"field": "name", "type": "nominal"},
+            "x": {"field": "maxhp", "type": "quantitative"},
+            "color": {"value": "grey"}
+          }
         },
-        mark: 'bar',
-        encoding: {
-          x: {field: 'a', type: 'ordinal'},
-          y: {field: 'b', type: 'quantitative'}
+        {
+          "mark": {"type": "rect", "stroke": "black"},
+          "encoding": {
+            "y": {
+              "field": "name",
+              "type": "nominal",
+              "axis": {"title": "", "labels": false, "ticks": false}
+            },
+            "x": {
+              "field": "hp",
+              "type": "quantitative",
+              "axis": {"title": "Hit Points"}
+            },
+            "color": {"value": "red"}
+          }
         }
+      ]
+    }
+  ]
       };
       vegaEmbed('#vis', yourVlSpec);
     </script>

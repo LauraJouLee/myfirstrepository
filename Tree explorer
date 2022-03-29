@@ -9,7 +9,6 @@
 
 <body>
   <div id="vis"></div>
-</body>
 
 <script type="text/javascript">
   var yourVlSpec = {
@@ -75,10 +74,8 @@
       }
     }
   ]
-}
-
-</script>
-
-
-
+} 
+vegaEmbed('#vis', yourVlSpec);
+    </script>
+  </body>
 </html>

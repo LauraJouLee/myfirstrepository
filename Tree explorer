@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>sample</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+</head>
+
+<body>
+  <div id="vis"></div>
+</body>
+
+<script type="text/javascript">
+  var yourVlSpec = {
+  
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"concat": {"spacing": 30}},
+  "params": [
+    {"name": "toggleOrigin", "bind": {"input": "checkbox"}}
+  ],
+  "data": {
+    "url": "https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", 
+    "format": {
+      "type": "csv"
+    }
+  },
+  "hconcat": [
+    {
+      "vconcat": [
+      {
+      "height": 200,
+      "width": 500,
+      "mark": "tick",
+      "encoding": {
+        "x": {"field": "INSPECT_DT", "type": "temporal"},
+        "y": {"field": "LOCTYPE", "type": "nominal"},
+        "color": {
+            "condition": {
+            "param": "toggleOrigin",
+            "field": "TREETYPE",
+            "type": "nominal"
+          },
+          "value": "steelblue"
+        }
+      }
+      },
+      {
+          "height": 200,
+          "width": 500,
+          "mark": "line",
+          "encoding": {
+          "x": {"field": "INSPECT_DT", "type": "temporal"},
+          "y": {
+            "field": "OBJECTID", 
+            "aggregate": "count"
+            }
+        }
+      }
+  ]
+  },
+  {
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "COND", "type": "nominal"},
+        "y": {"field": "OBJECTID", "aggregate": "count"},
+        "color": {
+            "condition": {
+            "param": "toggleOrigin",
+            "field": "TREETYPE",
+            "type": "nominal"
+          },
+          "value": "steelblue"
+        }
+      }
+    }
+  ]
+}
+
+</script>
+
+
+
+</html>

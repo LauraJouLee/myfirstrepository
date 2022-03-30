@@ -43,8 +43,8 @@
         "transform": [{"filter": {"param": "brush"}}],
         "mark": "bar",
         "encoding": {
-          "x": {"timeUnit": "year", "field": "INSPECT_DT", "bin": true},
-          "y": {"aggregate": "count"},
+          "x": {"timeUnit": "year", "field": "INSPECT_DT", "bin": true, "title": "Inspect Year"},
+          "y": {"aggregate": "count", "title": "Counts of Record"},
           "color": {"value": "goldenrod"}
         }
       }
@@ -55,8 +55,8 @@
       "mark": "bar",
       "transform": [{"filter": {"param": "brush"}}],
       "encoding": {
-        "x": {"timeUnit": "month", "field": "INSPECT_DT", "type": "temporal"},
-        "y": {"field": "OBJECTID", "aggregate": "count"},
+        "x": {"timeUnit": "month", "field": "INSPECT_DT", "type": "temporal", "title": "Inspect Month"},
+        "y": {"field": "OBJECTID", "aggregate": "count", "title": null},
         "color": {"field": "COND", "type": "nominal"}
       }
     },
@@ -65,10 +65,14 @@
       "mark": "bar",
       "transform": [{"filter": {"param": "brush"}}],
       "encoding": {
-        "x": {"field": "COND", "type": "nominal"},
-        "y": {"field": "OBJECTID", "aggregate": "count"}  
+        "x": {"field": "COND", "type": "nominal", 
+              "sort":["N/A", "Dead", "Critical", "Poor", "Fair", "Good", "Very Good", "Excellent"],
+            },
+        "y": {"field": "OBJECTID", "aggregate": "count", "title": null},
+        "color": {"field": "COND", "type": "nominal"}
       }
-    }]
+    }
+]
     },
     {
     "params": [{

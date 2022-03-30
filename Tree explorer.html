@@ -12,7 +12,6 @@
 
 <script type="text/javascript">
   var yourVlSpec = {
-    
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "config": {"concat": {"spacing": 30}},
   "data": {
@@ -26,16 +25,16 @@
     {"filter": {"field": "COND", "valid": false}}
   ],
 
-
+  
   "hconcat": [
   {
     "layer": [
       {
         "params": [{"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}],
-        "width": 400, "height": 300,
         "mark": "bar",
+        "width": 400, "height": 300,
         "encoding": {
-          "x": {"timeUnit": "year", "field": "INSPECT_DT", "type": "temporal"},
+          "x": {"timeUnit": "year", "field": "INSPECT_DT", "type": "temporal", "scale": {"domain": [2011, 2023]}},
           "y": {"field": "OBJECTID", "aggregate": "count"}
         }
       },
@@ -65,7 +64,7 @@
       "transform": [{"filter": {"param": "brush"}}],
       "encoding": {
         "x": {"field": "COND", "type": "nominal"},
-        "y": {"field": "OBJECTID", "aggregate": "count"}
+        "y": {"field": "OBJECTID", "aggregate": "count"}  
       }
     }
   ]

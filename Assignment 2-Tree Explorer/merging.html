@@ -13,7 +13,7 @@
 <script type="text/javascript">
   var yourVlSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "config": {"concat": {"spacing": 30}},
+  "config": {"concat": {"spacing": 20}},
   "data": {
     "url": "https://gis-cityofchampaign.opendata.arcgis.com/datasets/979bbeefffea408e8f1cb7a397196c64_22.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D", 
     "format": {
@@ -79,7 +79,7 @@
 
     "transform": [{"filter": {"field": "COND", "valid": false}}],
 
-    "width": 700, "height": 300,
+    "width": 900, "height": 300,
     "mark": "circle",
     "transform": [{"filter": {"param": "brush"}}],
     "encoding": {

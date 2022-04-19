@@ -1,6 +1,5 @@
 {
-  "nodes":  [
-  {"name": "Atlanta",
+   "name": "Atlanta",
    "name": "Boston",
    "name": "Calgary",
    "name": "Charleston",
@@ -36,5 +35,4 @@
    "name": "Vancouver",
    "name": "Washington",
    "name": "Winnipeg"
-  ]
 }

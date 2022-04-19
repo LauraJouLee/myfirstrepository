@@ -1,4 +1,4 @@
-{
+[ {
    "name": "Atlanta",
    "name": "Boston",
    "name": "Calgary",
@@ -36,3 +36,4 @@
    "name": "Washington",
    "name": "Winnipeg"
 }
+]

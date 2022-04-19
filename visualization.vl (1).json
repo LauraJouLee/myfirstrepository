@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "layer": [
+    {
+      "data": {
+        "url": "data/us-10m.json",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "name": "city-name",
+        "url": "https://raw.githubusercontent.com/LauraJouLee/myfirstrepository/master/usa.cities.json"
+      },
+      "projection": {"type": "albersUsa"},
+      "transform": [
+        {
+          "lookup": "name",
+          "from": {
+            "data": {
+              "name": "city position",
+              "url": "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+            },
+            "key": "city",
+            "fields": ["longitude", "latitude"]
+          }
+        }
+      ],
+      "mark": "circle",
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {"value": 50},
+        "color": {"value": "blue"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/LauraJouLee/myfirstrepository/master/1910.usa.tickets.json"
+      },
+      "transform": [
+        {
+          "lookup": "sources",
+          "from": {
+            "data": {
+              "url": "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+            },
+            "key": "city",
+            "fields": ["latitude", "longitude"]
+          },
+          "as": ["origin_latitude", "origin_longitude"]
+        },
+        {
+          "lookup": "target",
+          "from": {
+            "data": {
+              "url": "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+            },
+            "key": "city",
+            "fields": ["latitude", "longitude"]
+          },
+          "as": ["dest_latitude", "dest_longitude"]
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "longitude": {"field": "origin_longitude", "type": "quantitative"},
+        "latitude": {"field": "origin_latitude", "type": "quantitative"},
+        "longitude2": {"field": "dest_longitude"},
+        "latitude2": {"field": "dest_latitude"}
+      }
+    }
+  ],
+  "config": {}
+}
